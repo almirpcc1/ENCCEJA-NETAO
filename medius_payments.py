@@ -76,15 +76,19 @@ class MediusPagAPI:
         try:
             logger.info("Iniciando criação de transação PIX via MEDIUS PAG...")
             
-            # Validar dados obrigatórios
-            required_fields = ['amount', 'customer_name', 'customer_cpf']
-            missing_fields = []
-            for field in required_fields:
-                if field not in data or not data[field]:
-                    missing_fields.append(field)
+            # Validar dados obrigatórios com mapeamento flexível
+            if not data.get('amount'):
+                raise ValueError("Campo 'amount' é obrigatório")
             
-            if missing_fields:
-                raise ValueError(f"Campos obrigatórios ausentes: {', '.join(missing_fields)}")
+            # Mapear campos flexíveis (aceita tanto name/cpf quanto customer_name/customer_cpf)
+            customer_name = data.get('customer_name') or data.get('name')
+            customer_cpf = data.get('customer_cpf') or data.get('cpf')
+            
+            if not customer_name:
+                raise ValueError("Campo 'name' ou 'customer_name' é obrigatório")
+            
+            if not customer_cpf:
+                raise ValueError("Campo 'cpf' ou 'customer_cpf' é obrigatório")
             
             # Preparar dados da transação
             transaction_id = self._generate_transaction_id()
@@ -105,10 +109,10 @@ class MediusPagAPI:
                 "description": "Receita de bolo",
                 "paymentMethod": "PIX",
                 "customer": {
-                    "name": data.get('customer_name', 'Cliente'),
-                    "email": data.get('customer_email', default_email),
-                    "phone": data.get('customer_phone', default_phone),
-                    "cpf": data.get('customer_cpf', '').replace('.', '').replace('-', '') if data.get('customer_cpf') else None
+                    "name": customer_name,
+                    "email": data.get('customer_email') or data.get('email') or default_email,
+                    "phone": data.get('customer_phone') or data.get('phone') or default_phone,
+                    "cpf": customer_cpf.replace('.', '').replace('-', '') if customer_cpf else None
                 },
                 "companyId": self.company_id,
                 "externalId": transaction_id,
@@ -348,10 +352,23 @@ class MediusPagAPI:
                 'amount': 0
             }
 
+    def create_pix_payment(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        """Alias method for compatibility with the main payment system"""
+        return self.create_pix_transaction(data)
+
+    def create_pix_payment_with_discount(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        """Create PIX payment with discount - same as regular payment for Medius"""
+        return self.create_pix_transaction(data)
+
 def create_medius_pag_api():
     """Factory function to create MEDIUS PAG API instance"""
     secret_key = os.environ.get('MEDIUS_SECRET_KEY')
+    company_id = os.environ.get('MEDIUS_COMPANY_ID')
+    
     if not secret_key:
         raise ValueError("MEDIUS_SECRET_KEY não configurada nas variáveis de ambiente")
     
-    return MediusPagAPI(secret_key)
+    if not company_id:
+        raise ValueError("MEDIUS_COMPANY_ID não configurada nas variáveis de ambiente")
+    
+    return MediusPagAPI(secret_key, company_id)

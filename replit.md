@@ -266,15 +266,18 @@ This is a Brazilian PIX payment system built with Flask that appears to simulate
   - Updated font to Rawline (same as /encceja page) for consistency
   - Modified submitForm() function to redirect to /encceja after validation
   - Page includes CAPTCHA-style image selection and validation popup
-- July 24, 2025. Implemented Medius Pag payment gateway integration:
-  - Created medius_payments.py with full MEDIUS PAG API wrapper
+- July 24, 2025. Completed Medius Pag payment gateway integration:
+  - Created medius_payments.py with full MEDIUS PAG API wrapper (Basic Auth authentication)
   - Integrated Medius Pag into payment_gateway.py factory system
   - Added support for GATEWAY_CHOICE="MEDIUS" environment variable
-  - Implemented PIX transaction creation with authentication via Basic Auth
+  - Implemented PIX transaction creation with flexible field mapping (accepts name/cpf or customer_name/customer_cpf)
   - Added automatic Pushcut notifications for new transactions
   - Integrated payment status checking with proper status mapping
+  - Added compatibility methods create_pix_payment() and create_pix_payment_with_discount()
+  - Successfully tested: PIX creation, code generation, and webhook notifications
   - System now supports 4 payment gateways: NovaEra, For4Payments, Cashtime, and Medius Pag
-  - Requires MEDIUS_SECRET_KEY environment variable for operation
+  - Requires MEDIUS_SECRET_KEY and MEDIUS_COMPANY_ID environment variables for operation
+  - Medius API confirmed working: Transaction ID 02d71a37-e449-4135-a3d3-07dffa790f16
 
 ## User Preferences
 
