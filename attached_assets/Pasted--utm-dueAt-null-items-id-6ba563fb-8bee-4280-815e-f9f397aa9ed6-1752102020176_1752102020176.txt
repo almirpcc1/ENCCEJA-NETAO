@@ -1,0 +1,53 @@
+{
+  "utm": "",
+  "dueAt": null,
+  "items": [
+    {
+      "id": "6ba563fb-8bee-4280-815e-f9f397aa9ed6",
+      "title": "Inscrição 2025",
+      "quantity": 1,
+      "tangible": false,
+      "paymentId": "a3e64fe0-2ecb-4e62-8971-7672c9020ab2",
+      "unitPrice": 8340
+    }
+  ],
+  "status": "PENDING",
+  "pixCode": "00020126870014br.gov.bcb.pix2565pix.primepag.com.br/qr/v3/at/988b8d67-4fb8-4704-968e-a1adcc2ea54c5204000053039865802BR5924SEGURANCA_GARANTIDA_LTDA6012NOVO_ORIENTE62070503***630458B5",
+  "customId": "FOR944725006448831",
+  "customer": {
+    "id": "88dad9df-0aa1-4bbc-9c3d-f02af3ac5f6c",
+    "cep": null,
+    "cpf": "08329703444",
+    "city": null,
+    "name": "LUCAS GABRIEL RODRIGUES DOS SANTOS",
+    "email": "lucasgabrielrodriguesdossantos@gmail.com",
+    "phone": "+5582996592180",
+    "state": null,
+    "number": null,
+    "street": null,
+    "district": null,
+    "createdAt": "2025-07-09T22:17:31.193Z",
+    "updatedAt": "2025-07-09T22:17:31.193Z",
+    "complement": null
+  },
+  "netValue": 7757,
+  "billetUrl": null,
+  "createdAt": "2025-07-09T22:17:31.252Z",
+  "expiresAt": null,
+  "paymentId": "a3e64fe0-2ecb-4e62-8971-7672c9020ab2",
+  "pixQrCode": "data:image/png;base64,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",
+  "timestamp": 1752099472845,
+  "updatedAt": "2025-07-09T22:17:31.555Z",
+  "approvedAt": null,
+  "billetCode": null,
+  "externalId": "",
+  "refundedAt": null,
+  "rejectedAt": null,
+  "totalValue": 8340,
+  "checkoutUrl": "",
+  "referrerUrl": "",
+  "chargebackAt": null,
+  "installments": null,
+  "paymentMethod": "PIX",
+  "deliveryStatus": null
+}

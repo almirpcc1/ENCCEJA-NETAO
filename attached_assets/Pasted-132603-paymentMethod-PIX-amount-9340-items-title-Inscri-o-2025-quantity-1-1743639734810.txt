@@ -1,0 +1,28 @@
+132603', 'paymentMethod': 'PIX', 'amount': 9340, 'items': [{'title': 'Inscrição 2025', 'quantity': 1, 'unitPrice': 9340, 'tangible': False}]}
+INFO:app:Endpoint API: https://app.for4payments.com.br/api/v1/transaction.purchase
+INFO:app:Enviando requisição para API For4Payments...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connecti�~2��R�p�y�j:Z1���@�q��}h"�R*n�`��^�Bux�M��񥶰c��M��}_\�_��i���A����Y#t�U��ys��_�v�<�[7�4�g�x������f��"��H�z<�~��Јf؝�}��8�o+?&陶V��z�Չ�8#8�_�χ�=:a9��.�t^\g���W>ҳ�Z�- 5a��d None
+I;�h�app�l��aNp_���N�%_xda (Status: 200)
+DEBUG:app:Resposta compl��!G�!�KZ��ӪH�ٖ{����F��>T��E�Q�#�
+&�v@-��g_Z�=g Ϻܷ���1pP84�aN!�%
+�,QM��Gݥ!�����DKi#)sL�~q��)��Z%����(�&rY��Zʺ�%��ط�R�HnY�
+���L|����>�dj�Vd_�4�i�f� =�=���FL��;�1��z�p�EE[�@���Y��TI�8�{~]�>��ө�B���u��a�a���C�|Y�};��9pO����F�h�L��]�A듹ϭOe~f8����r}�6�w�N�˻C��ʹ�J�=�2#�M:�n]��W��D����>(t���Wp>x�J>%��n���Z�r}�ؑ�A��I        틢m}d߻��m����۶\l��7;�f���4z�m
+����/����Z�E���ui�a��^�)F����H��{��a�v?f�V�ƃ����T?94/-rt��I�K��G�   y�c���
+�9�q~Ε�����ХNfz� ý��ܿ}O��h���\s$�)�?�G��s�%ߟU{<�wE���Ƃ�އ�>h�}�Q��}��}��1_6&�:N��}'�~�PO��n}0�-K=ߡe���ڮ8���/�S�3���|y7���|�X~l۶� ��34�~���������˲����a�eY����޿�"��tZ��������?E����R           v��ѣjL�|�q��sq��ԇ�P�П��}�/��<��'�*
+���)�ۘ�l􋝵�˷���R���ʒ�o�T��o�`�-W�U^��V꥾�5Y�e]�U�4tS^m#�Z���'��Ď����9q���7dو�md�+y-������m�kM��r�����"��a�Ȟ#_Oi#��y<{җ��r ϧ���/���q�Ÿ"t�6'�эE�rFZ������G����O���$���n�6���_҈��0Fi��X��e!�c���QO��K��)�������ik���ApΈ��0{�/�%cݗ�F
+�W�K*   �o2�����b �i�w/���-k߲���f�l��2�L��^��j��^^d(�XԤh�W7�$=�['�@�E�L#:�"�D��x�s\4p`�F��o7�g~��P83�&�L�2��L8���
+ERROR:app:Erro de conexão com a API For4Payments: Expecting value: line 1 column 1 (char 0)�9��G��ܭaH߷�:Gsӹ��U�ϵ
+ERROR:app:Erro de validação: Erro de conexão com o serviço de pagamento. Tente novamente em alguns instantes.���
+ERROR:app:Erro ao criar pagamento: Erro de conexão com o serviço de pagamento. Tente novamente em alguns instantes.��@m��(����b��d�{�x7˕_=:a=��[���p�:
+INFO:app:Permitindo acesso para a rota: /verificar-pagamentoi�S4'���Ou2��|�=@�O
+INFO:app:[PROD] Verificando status do pagamento: demo-123456&������`��-m-�W�k�\������p��Q��r1�]A\�㌮�.ÃV���M9��Y
+INFO:app:[PROD] Verificando status do pagamento demo-123456             �3>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): app.for4payments.com.br:443
+DEBUG:urllib3.connectionpool:https://app.for4payments.com.br:443 "GET /api/v1/transaction.getPayment?id=demo-123456 HTTP/1.1" 500 73
+INFO:app:Status check response (Status: 500)
+DEBUG:app:Status check response body: {"message":"Erro ao recuperar pagamento.","code":"INTERNAL_SERVER_ERROR"}
+ERROR:app:Failed to fetch payment status (Status: 500)
+INFO:app:[PROD] Status do pagamento: {'status': 'pending', 'original_status': 'PENDING'}
+INFO:app:Permitindo acesso para a rota: /verificar-pagamento
+INFO:app:[PROD] Verificando status do pagamento: demo-123456
+INFO:app:[PROD] Verificando status do pagamento demo-123456

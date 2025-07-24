@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Cronômetro PIX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-4">
+    <div class="max-w-md mx-auto">
+        <h1 class="text-2xl font-bold mb-4 text-center">Teste do Cronômetro PIX</h1>
+        
+        <!-- Box vermelha com cronômetro -->
+        <div id="payment-status-box" class="bg-red-600 text-white p-4 rounded-lg text-center mb-6">
+            <div class="flex items-center justify-center mb-2">
+                <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3"></div>
+                <span class="text-lg font-semibold">Aguardando pagamento...</span>
+            </div>
+            <div class="text-sm">
+                Tempo restante: <span id="countdown-timer" class="font-mono text-lg">12:00</span>
+            </div>
+        </div>
+        
+        <!-- Código PIX (simulado) -->
+        <div class="bg-white p-4 rounded-lg border">
+            <h3 class="text-lg font-semibold mb-2">Copie o código PIX:</h3>
+            <div class="bg-gray-100 p-3 rounded border font-mono text-sm break-all">
+                00020126870014br.gov.bcb.pix2565pix.primepag.com.br/qr/v3/at/demo-test-123456782BR5924SEGURANCA_GARANTIDA_LTDA6012NOVO_ORIENTE62070503***63041234
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para iniciar o cronômetro PIX de 12 minutos
+        function startPixCountdown() {
+            const countdownElement = document.getElementById('countdown-timer');
+            const paymentStatusBox = document.getElementById('payment-status-box');
+            
+            // Definir o tempo total em segundos (12 minutos = 720 segundos)
+            let timeLeft = 720;
+            
+            // Atualizar o contador a cada segundo
+            const countdownInterval = setInterval(() => {
+                // Calcular minutos e segundos restantes
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                // Formatar a exibição (MM:SS)
+                const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                // Atualizar o elemento na página
+                if (countdownElement) {
+                    countdownElement.textContent = formattedTime;
+                }
+                
+                // Quando faltar menos de 2 minutos, destacar em vermelho mais intenso
+                if (timeLeft <= 120) {
+                    if (paymentStatusBox) {
+                        paymentStatusBox.style.backgroundColor = '#dc2626'; // Vermelho mais intenso
+                    }
+                }
+                
+                // Decrementar o tempo restante
+                timeLeft--;
+                
+                // Se o tempo acabou
+                if (timeLeft < 0) {
+                    clearInterval(countdownInterval);
+                    if (countdownElement) {
+                        countdownElement.textContent = 'EXPIRADO';
+                    }
+                    
+                    // Ocultar o status box e mostrar mensagem de expiração
+                    if (paymentStatusBox) {
+                        paymentStatusBox.innerHTML = `
+                            <div class="bg-red-800 text-white p-6 rounded-lg text-center">
+                                <h3 class="text-lg font-bold mb-2">❌ Código PIX Expirado</h3>
+                                <p class="text-sm">O tempo para pagamento expirou. Recarregue a página para gerar um novo código PIX.</p>
+                                <button onclick="location.reload()" class="mt-3 bg-white text-red-800 px-4 py-2 rounded font-bold">
+                                    Gerar Novo Código
+                                </button>
+                            </div>
+                        `;
+                    }
+                }
+            }, 1000);
+        }
+
+        // Iniciar o cronômetro quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Iniciando teste do cronômetro PIX...');
+            startPixCountdown();
+        });
+    </script>
+</body>
+</html>
